@@ -1,17 +1,35 @@
+import { Megaphone } from "lucide-react";
 import { FaBook } from "react-icons/fa";
 
+const teacher: string = "Mr.Nattapong Nakaom";
+interface works {
+  id: number;
+  title: string;
+  create_at: string;
+}
+
+const works: works[] = [
+  {
+    id: 1,
+    title: "เขียนโปรแกรมไพธอนบวกเลข 1-10",
+    create_at: "2023-05-01",
+  },
+  {
+    id: 2,
+    title: "เขียนโปรแกรมหาพื้นที่ของแปดเหลี่ยม",
+    create_at: "2023-05-01",
+  },
+];
+
 export default function Page() {
-
-  
-
   return (
     <>
       <div className="bg-primary p-5 rounded-2xl">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-wrap gap-2 justify-between items-center">
           <div>
-            <h1 className="text-white text-2xl">สวัสดีคุณ, Nattapong Nakaom</h1>
-            <p className="text-gray-300 text-xl mt-1">20000-9999 การเขียนโปรแกรมไพธอนเบื้องต้น</p>
-            <p className="text-gray-300 text-xl mt-1">ปวช.1 เทคโนโลยีสารสนเทศ</p>
+            <h1 className="text-white text-xl sm:text-2xl">สวัสดีคุณ, {teacher}</h1>
+            <p className="text-gray-300 text-lg sm:text-xl mt-1">20000-9999 การเขียนโปรแกรมไพธอนเบื้องต้น</p>
+            <p className="text-gray-300 text-lg sm:text-xl mt-1">ปวช.1 เทคโนโลยีสารสนเทศ</p>
           </div>
           <div>
             <button className="bg-white text-primary rounded-xl  px-5 py-1.5">ออกจากระบบ</button>
@@ -21,14 +39,44 @@ export default function Page() {
       <div className="mt-5 ms-2 mb-3">
         <h2 className="text-2xl font-bold ">งานที่ได้รับมอบหมาย</h2>
       </div>
-      <div className="bg-white p-5 rounded-xl border border-gray-300 cursor-pointer hover:shadow-md duration-300 transition-all">
-        <div className="flex items-center gap-5">
-          <div className="p-4 bg-gray-200 rounded-full">
-            <FaBook className="text-2xl" />
+      <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-5 items-start">
+        <div className="order-2 md:order-1 flex flex-col gap-5">
+          {works.map((work) => (
+            <div
+              key={work.id}
+              className=" bg-white p-5 rounded-xl border border-gray-300 cursor-pointer hover:shadow-md duration-300 transition-all"
+            >
+              <div className="flex items-center gap-5">
+                <div className="p-4 bg-gray-200 rounded-full">
+                  <FaBook className="text-2xl" />
+                </div>
+                <div>
+                  <h2 className="text-blue-900 text-lg sm:text-xl font-bold mb-2">
+                    {teacher} โพสต์งานใหม่: {work.title}
+                  </h2>
+                  <p className="text-gray-500 text-sm">โพสต์เมื่อ: {work.create_at}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="order-1 md:order-2 bg-white rounded-xl border border-gray-300">
+          <div className="flex items-center">
+            <Megaphone className="text-xl ms-2" />
+            <h2 className="p-3 font-bold text-lg">ประกาศทั่วไป</h2>
+            
           </div>
-          <div>
-            <h2 className="text-blue-900 text-xl font-bold mb-2">Mr.Nattapong Nakaom โพสต์งานใหม่: เขียนโปรแกรมไพธอน บวกเลข 1-10</h2>
-            <p className="text-gray-500 text-lg">โพสต์เมื่อ: 13 กุมภาพันธ์ 2029</p>
+          <div className="px-3 mb-2">
+            <div className="bg-white border border-gray-300 p-2 rounded-xl">
+              <p>ทดสอบไอพวกบื้อ</p>
+              <p className="text-xs">13/8/2590</p>
+            </div>
+          </div>
+           <div className="px-3 mb-2">
+            <div className="bg-white border border-gray-300 p-2 rounded-xl">
+              <p>วันนี้ไม่มีเรียนจ้า</p>
+              <p className="text-xs">12/8/2590</p>
+            </div>
           </div>
         </div>
       </div>
